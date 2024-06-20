@@ -9,4 +9,5 @@ include 'reactive-spring-boot'
 include 'spring-rx-mongo'
 include 'pure-sample-spring'
 include 'reactive-spring-webflux'
+include 'spring-boot-demo'
 
