@@ -1,5 +1,6 @@
-package com.example;
+package com.example.service;
 
+import com.example.db.model.Payment;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

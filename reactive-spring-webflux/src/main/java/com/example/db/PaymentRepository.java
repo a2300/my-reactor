@@ -1,5 +1,6 @@
-package com.example;
+package com.example.db;
 
+import com.example.db.model.Payment;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import reactor.core.publisher.Flux;
 
