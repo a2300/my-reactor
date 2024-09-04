@@ -3,6 +3,8 @@ plugins {
     id 'eclipse'
     id 'org.springframework.boot' version '3.2.5'
     id 'io.spring.dependency-management' version '1.1.4'
+
+    id "jacoco"
 }
 
 group = 'com.example'
@@ -28,4 +30,49 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+def jacocoExclusions = [
+        'com/example/**/QuotesApplication.class',
+        'com/example/**/GlobalExceptionHandler.class',
+        'com/example/**/QuoteIndexOutOfBoundsException.class'
+]
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = true
+        xml.destination file("$buildDir/reports/jacoco/test/jacocoTestReport.xml")
+        csv.required = false
+        html.required = true
+    }
+}
+jacocoTestCoverageVerification {
+    dependsOn test
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: jacocoExclusions)
+        }))
+    }
+    violationRules {
+        failOnViolation = true
+        rule {
+            limit {
+                minimum = 0.8
+            }
+            excludes = [
+                   'com.example.QuotesApplication',
+                   'com.example.GlobalExceptionHandler',
+                   'com.example.QuoteIndexOutOfBoundsException'
+            ]
+        }
+    }
+}
+
+check {
+    dependsOn jacocoTestCoverageVerification
+}
+
+test {
+    finalizedBy jacocoTestReport
 }

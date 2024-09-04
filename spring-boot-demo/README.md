@@ -18,3 +18,7 @@ gradle bootRun
 curl -i http://localhost:8888/api/quotes/9
 ```
 
+Gradle Jacoco Plugin
+https://github.com/thombergs/code-examples/blob/master/tools/jacoco/build.gradle
+https://reflectoring.io/jacoco/
+

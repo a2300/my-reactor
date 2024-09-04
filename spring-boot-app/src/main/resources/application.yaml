@@ -1,0 +1,33 @@
+# https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html
+
+server:
+  port: 8080
+  tomcat:
+    threads:
+      max: 200 # default=200
+management:
+  server:
+    port: 8081
+
+spring:
+  datasource:
+    hikari:
+      maximum-pool-size: 40 # default=10
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate.ddl-auto: create-drop
+    #show-sql: true
+    properties:
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+
+http:
+  exchange-client:
+    url: http://localhost:8888
+    read-timeout: 5s # default=infinite
+
+logging:
+  level:
+    root: INFO
+    a2300.spring: DEBUG

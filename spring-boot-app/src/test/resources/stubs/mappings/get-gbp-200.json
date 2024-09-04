@@ -1,0 +1,21 @@
+{
+  "request": {
+    "url": "/exchanges?currency=GBP",
+    "method": "GET"
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "base": "GBP",
+      "rates": {
+        "USD": 2.0,
+        "EUR": 2.0,
+        "GBP": 1.0
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json; charset=UTF-8"
+    },
+    "fixedDelayMilliseconds": 200
+  }
+}
