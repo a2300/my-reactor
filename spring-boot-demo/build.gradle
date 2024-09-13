@@ -3,6 +3,7 @@ plugins {
     id 'eclipse'
     id 'org.springframework.boot' version '3.2.5'
     id 'io.spring.dependency-management' version '1.1.4'
+    id 'org.openapi.generator' version '7.7.0'
 
     id "jacoco"
 }
@@ -30,6 +31,25 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+tasks.named('compileJava') {
+    dependsOn(tasks.openApiGenerate)
+}
+
+sourceSets.main.java.srcDir "${buildDir}/generate-resources/main/src/main/java"
+
+openApiGenerate {
+    generatorName.set('java')
+    configOptions.set([
+            library: 'restclient',
+            openApiNullable: 'false'
+    ])
+    inputSpec.set("$projectDir/petclinic-spec.yml")
+    ignoreFileOverride.set("$projectDir/.openapi-generator-java-sources.ignore")
+    invokerPackage.set('com.myapp')
+    modelPackage.set('com.myapp.model')
+    apiPackage.set('com.myapp.api')
 }
 
 def jacocoExclusions = [
