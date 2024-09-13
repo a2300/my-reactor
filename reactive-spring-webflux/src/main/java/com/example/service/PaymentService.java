@@ -8,4 +8,6 @@ public interface PaymentService {
     Flux<Payment> list();
 
     Mono<String> send(Mono<Payment> payment);
+
+    Mono<Payment> findOne(String id);
 }

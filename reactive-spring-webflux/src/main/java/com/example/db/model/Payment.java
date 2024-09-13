@@ -14,8 +14,9 @@ public class Payment {
     @Id
     String id;
     String user;
+    Integer price;
 
     public Payment withUser(String user) {
-        return this.user.equals(user) ? this : new Payment(this.id, user);
+        return this.user.equals(user) ? this : new Payment(this.id, user, 0);
     }
 }
